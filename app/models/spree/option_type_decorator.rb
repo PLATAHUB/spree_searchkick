@@ -4,7 +4,7 @@ module Spree::OptionTypeDecorator
   end
 
   def filter_name
-    name.downcase.to_s
+    name.parameterize.to_s
   end
 end
 

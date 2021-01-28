@@ -112,13 +112,19 @@ module Spree::ProductDecorator
     }
 
     filterable_properties.each do |prop|
-      json.merge!(Hash[prop[:name].downcase, prop[:value].downcase]) if prop[:value].present?
+      json.merge!(Hash[prop[:name].parameterize, prop[:value].parameterize]) if prop[:value].present?
     end
 
     filterable_option_types.each do |option_type|
-      values = option_values.find_all { |ov| ov.first == option_type.first }.map(&:last).uniq.compact.each(&:downcase)
+      values = option_values.find_all { |ov| ov.first == option_type.first }.map(&:last).uniq.compact.each(&:parameterize)
 
-      json.merge!(Hash[option_type.last.downcase, values]) if values.present?
+      json.merge!(Hash[option_type.last.parameterize, values]) if values.present?
+    end
+
+    taxonomies_ids = taxons.pluck(:taxonomy_id).uniq
+    taxonomies = Spree::Taxonomy.where(id: taxonomies_ids).pluck(:id, :name)
+    taxonomies.each do |taxonomy|
+      json.merge!(Hash["#{taxonomy.last.parameterize}_ids", taxons.select { |t| t.taxonomy_id = taxonomy.first }.map(&:id)])
     end
 
     json.merge!(index_data)

@@ -4,7 +4,7 @@ module Spree::TaxonomyDecorator
   end
   
   def filter_name
-    "#{name.downcase}_ids"
+    "#{name.parameterize}_ids"
   end
 end
 

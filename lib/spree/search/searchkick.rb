@@ -15,7 +15,7 @@ module Spree
           smart_aggs: true,
           order: sorted,
           page: curr_page,
-          per_page: per_page,
+          per_page: per_page
         )
       end
 
@@ -40,14 +40,18 @@ module Spree
       end
 
       def aggregations
-        fs = []
+        fs = {}
 
         aggregation_classes.each do |agg_class|
           agg_class.filterable.each do |record|
-            fs << record.filter_name.to_sym
+            fs[record.filter_name.parameterize.to_sym] = { min_doc_count: 1 }
           end
         end
 
+        #TODO: Allow to configure these ranges or to set a dynamic range
+        price_ranges = [{ to: 10000 }, { from: 20000, to: 50000 }, { from: 50000, to: 100000 }, { from: 100000, to: 200000 }, { from: 200000 }]
+        fs[:price] = { ranges: price_ranges }
+        
         fs
       end
 
