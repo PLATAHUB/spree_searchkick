@@ -13,6 +13,7 @@ module Spree
           where: where_query,
           aggs: aggregations,
           smart_aggs: true,
+          body_options: body_options,
           order: sorted,
           page: curr_page,
           per_page: per_page
@@ -48,10 +49,6 @@ module Spree
           end
         end
 
-        #TODO: Allow to configure these ranges or to set a dynamic range
-        price_ranges = [{ to: 10000 }, { from: 20000, to: 50000 }, { from: 50000, to: 100000 }, { from: 100000, to: 200000 }, { from: 200000 }]
-        fs[:price] = { ranges: price_ranges }
-        
         fs
       end
 
@@ -61,6 +58,11 @@ module Spree
           Spree::Property, 
           Spree::OptionType
         ]
+      end
+
+      def body_options
+        #TODO Allow parameterization of price ranges. 
+        { aggs: { price: { histogram: { field: :price, interval: 20000, min_doc_count: 2 } } } }
       end
 
       def add_search_filters(query)
