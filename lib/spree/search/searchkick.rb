@@ -61,7 +61,7 @@ module Spree
       end
 
       def body_options
-        #TODO Allow parameterization of price ranges. 
+        # TODO: Allow parameterization of price ranges. 
         { aggs: { price: { histogram: { field: :price, interval: 20000, min_doc_count: 2 } } } }
       end
 
