@@ -3,6 +3,7 @@ module Spree::ProductDecorator
     base.searchkick(
       callbacks: :async,
       word_start: [:name],
+      locations: [:location],
       settings: { number_of_replicas: 0 },
       merge_mappings: true,
       mappings: {
