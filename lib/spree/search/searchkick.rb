@@ -13,7 +13,7 @@ module Spree
           where: where_query,
           aggs: aggregations,
           smart_aggs: true,
-          body_options: body_options,
+          body_options: body_options(price_interval),
           order: sorted,
           page: curr_page,
           per_page: per_page
@@ -60,9 +60,11 @@ module Spree
         ]
       end
 
-      def body_options
+      def body_options(interval)
         # TODO: Allow parameterization of price ranges. 
-        { aggs: { price: { histogram: { field: :price, interval: 20000, min_doc_count: 2 } } } }
+        interval ||= 20_000
+
+        { aggs: { price: { histogram: { field: :price, interval: interval, min_doc_count: 2} } } }
       end
 
       def add_search_filters(query)
