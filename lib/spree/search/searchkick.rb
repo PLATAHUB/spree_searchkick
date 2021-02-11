@@ -1,6 +1,8 @@
 module Spree
   module Search
     class Searchkick < Spree::Core::Search::Base
+      DEFAULT_PRICE_INTERVAL = 20_000
+
       def retrieve_products
         @products = base_elasticsearch
       end
@@ -61,8 +63,8 @@ module Spree
       end
 
       def body_options(interval)
-        # TODO: Allow parameterization of price ranges. 
-        interval ||= 20_000
+        # TODO: Allow parameterization of price ranges.
+        interval ||= DEFAULT_PRICE_INTERVAL
 
         { aggs: { price: { histogram: { field: :price, interval: interval, min_doc_count: 2} } } }
       end
