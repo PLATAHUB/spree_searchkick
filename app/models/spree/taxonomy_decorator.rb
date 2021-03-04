@@ -8,4 +8,4 @@ module Spree::TaxonomyDecorator
   end
 end
 
-Spree::Taxonomy.prepend(Spree::TaxonomyDecorator)
+::Spree::Taxonomy.prepend(Spree::TaxonomyDecorator)

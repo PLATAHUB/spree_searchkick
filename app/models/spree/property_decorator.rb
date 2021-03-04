@@ -8,4 +8,4 @@ module Spree::PropertyDecorator
   end
 end
 
-Spree::Property.prepend(Spree::PropertyDecorator)
+::Spree::Property.prepend(Spree::PropertyDecorator)

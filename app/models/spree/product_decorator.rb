@@ -138,4 +138,4 @@ module Spree::ProductDecorator
   end
 end
 
-Spree::Product.prepend(Spree::ProductDecorator)
+::Spree::Product.prepend(Spree::ProductDecorator)

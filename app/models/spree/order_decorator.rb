@@ -9,4 +9,4 @@ module Spree::OrderDecorator
   end
 end
 
-Spree::Order.prepend(Spree::OrderDecorator)
+::Spree::Order.prepend(Spree::OrderDecorator)

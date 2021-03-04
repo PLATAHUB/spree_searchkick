@@ -18,5 +18,5 @@ module Spree::ProductsControllerDecorator
 end
 
 if defined?(Spree::ProductsController)
-  Spree::ProductsController.prepend(Spree::ProductsControllerDecorator)
+  ::Spree::ProductsController.prepend(Spree::ProductsControllerDecorator)
 end

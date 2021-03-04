@@ -8,4 +8,4 @@ module Spree::OptionTypeDecorator
   end
 end
 
-Spree::OptionType.prepend(Spree::OptionTypeDecorator)
+::Spree::OptionType.prepend(Spree::OptionTypeDecorator)
