@@ -1,5 +1,8 @@
+# encoding: UTF-8
+lib = File.expand_path('../lib/', __FILE__)
+$LOAD_PATH.unshift lib unless $LOAD_PATH.include?(lib)
 
-require File.expand_path('../lib/spree_searchkick/version', __FILE__)
+require 'spree_searchkick/version'
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
