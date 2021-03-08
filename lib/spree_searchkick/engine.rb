@@ -22,7 +22,7 @@ module SpreeSearchkick
         end
       end
 
-      Spree::Config.searcher_class = Spree::Search::Searchkick
+      ::Spree::Config.searcher_class = ::Spree::Search::Searchkick
     end
 
     config.to_prepare &method(:activate).to_proc
