@@ -1,4 +1,4 @@
-module Spree::ProductDecorator
+module SpreeSearchkick::Spree::ProductDecorator
   def self.prepended(base)
     base.searchkick(
       callbacks: :async,
@@ -138,4 +138,4 @@ module Spree::ProductDecorator
   end
 end
 
-::Spree::Product.prepend(Spree::ProductDecorator)
+::Spree::Product.prepend(SpreeSearchkick::Spree::ProductDecorator)
