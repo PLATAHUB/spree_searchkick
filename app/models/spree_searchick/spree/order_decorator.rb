@@ -1,4 +1,4 @@
-module SpreeSearchkick::Spree::OrderDecorator
+module SpreeSearchick::Spree::OrderDecorator
   def self.prepended(base)
     base.state_machine.after_transition to: :complete, do: :reindex_order_products
   end
@@ -9,4 +9,4 @@ module SpreeSearchkick::Spree::OrderDecorator
   end
 end
 
-::Spree::Order.prepend(SpreeSearchkick::Spree::OrderDecorator)
+::Spree::Order.prepend(SpreeSearchick::Spree::OrderDecorator)

@@ -1,4 +1,4 @@
-module SpreeSearchkick::Spree::TaxonomyDecorator
+module SpreeSearchick::Spree::TaxonomyDecorator
   def self.prepended(base)
     base.scope :filterable, -> { where(filterable: true) }
   end
@@ -8,4 +8,4 @@ module SpreeSearchkick::Spree::TaxonomyDecorator
   end
 end
 
-::Spree::Taxonomy.prepend(SpreeSearchkick::Spree::TaxonomyDecorator)
+::Spree::Taxonomy.prepend(SpreeSearchick::Spree::TaxonomyDecorator)

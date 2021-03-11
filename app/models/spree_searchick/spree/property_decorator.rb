@@ -1,4 +1,4 @@
-module SpreeSearchkick::Spree::OptionTypeDecorator
+module SpreeSearchick::Spree::PropertyDecorator
   def self.prepended(base)
     base.scope :filterable, -> { where(filterable: true) }
   end
@@ -8,4 +8,4 @@ module SpreeSearchkick::Spree::OptionTypeDecorator
   end
 end
 
-::Spree::OptionType.prepend(SpreeSearchkick::Spree::OptionTypeDecorator)
+::Spree::Property.prepend(SpreeSearchick::Spree::PropertyDecorator)
