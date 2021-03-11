@@ -1,4 +1,4 @@
-module Spree::ProductsControllerDecorator
+module SpreeSearchick::Spree::ProductsControllerDecorator
   # Sort by conversions desc
   def best_selling
     @taxon = Spree::Taxon.friendly.find(params[:id]) if params[:id]
@@ -18,5 +18,5 @@ module Spree::ProductsControllerDecorator
 end
 
 if defined?(Spree::ProductsController)
-  ::Spree::ProductsController.prepend(Spree::ProductsControllerDecorator)
+  ::Spree::ProductsController.prepend(SpreeSearchick::Spree::ProductsControllerDecorator)
 end
