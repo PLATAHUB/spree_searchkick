@@ -1,4 +1,4 @@
-module SpreeSearchkick::Spree::ProductDecorator
+module SpreeSearchick::Spree::ProductDecorator
   def self.prepended(base)
     base.searchkick(
       callbacks: :async,
@@ -36,7 +36,7 @@ module SpreeSearchkick::Spree::ProductDecorator
 
     def base.autocomplete(keywords)
       if keywords
-        Spree::Product.search(
+        ::Spree::Product.search(
           keywords,
           fields: autocomplete_fields,
           match: :word_start,
@@ -46,7 +46,7 @@ module SpreeSearchkick::Spree::ProductDecorator
           where: search_where,
         ).map(&:name).map(&:strip).uniq
       else
-        Spree::Product.search(
+        ::Spree::Product.search(
           "*",
           fields: autocomplete_fields,
           load: false,
@@ -123,7 +123,7 @@ module SpreeSearchkick::Spree::ProductDecorator
     end
 
     taxonomies_ids = taxons.pluck(:taxonomy_id).uniq
-    taxonomies = Spree::Taxonomy.where(id: taxonomies_ids).pluck(:id, :name)
+    taxonomies = ::Spree::Taxonomy.where(id: taxonomies_ids).pluck(:id, :name)
     taxonomies.each do |taxonomy|
       json.merge!(Hash["#{taxonomy.last.parameterize}_ids", taxons.select { |t| t.taxonomy_id = taxonomy.first }.map(&:id)])
     end
@@ -138,4 +138,4 @@ module SpreeSearchkick::Spree::ProductDecorator
   end
 end
 
-::Spree::Product.prepend(SpreeSearchkick::Spree::ProductDecorator)
+::Spree::Product.prepend(SpreeSearchick::Spree::ProductDecorator)
